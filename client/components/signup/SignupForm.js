@@ -1,4 +1,6 @@
 import React from 'react';
+import timezones from '../../data/timezones';
+import map from 'lodash/map'
 
 class SignupForm extends React.Component {
   constructor (props) {
@@ -28,6 +30,13 @@ class SignupForm extends React.Component {
   }
 
   render() {
+
+    // Use Lodash’s map function to map through timezones in data/timezones.js, creating dropdown options for use in our Timezone dropdown.
+
+    const options = map(timezones, (val, key) =>
+      <option key={val} value={val}>{key}</option>
+    );
+
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Join our community!</h1>
@@ -74,6 +83,19 @@ class SignupForm extends React.Component {
             name="passwordConfirmation"
             className="form-control"
           />
+        </div>
+
+        <div className="form-group">
+          <label className="control-label"> Timezone </label>
+          <select
+            value={this.state.timezone}
+            onChange={this.onChange}
+            name="timezone"
+            className="form-control"
+          >
+            <option value="" disabled>Choose your timezone</option>
+            { options }
+          </select>
         </div>
 
         <div className="form-group">
