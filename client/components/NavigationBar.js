@@ -8,7 +8,7 @@ export default () => (
         <Link to="/" className="navbar-brand">Red Dice</Link>
       </div>
 
-      <div className="collapse navbar-collapse">
+      <div className="">
         <ul className="nav navbar-nav navbar-right">
           <li><Link to="/signup">Sign Up</Link></li>
         </ul>
