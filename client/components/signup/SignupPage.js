@@ -22,4 +22,6 @@ SignupPage.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired
 }
 
+// Connect to Redux so we can dispatch the userSignupRequest action from SignupPage and SignupForm
+
 export default connect(null, { userSignupRequest })(SignupPage);
