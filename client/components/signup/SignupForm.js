@@ -2,6 +2,8 @@ import React from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classnames from 'classnames';
+import validateInput from '../../../server/shared/validations/signup';
+
 
 class SignupForm extends React.Component {
   constructor (props) {
@@ -27,13 +29,36 @@ class SignupForm extends React.Component {
     })
   }
 
+  // Validates form on client side first
+  isValid() {
+    // Calls our shared validation function, the same one that is on the server
+    const { errors, isValid } = validateInput(this.state);
+
+    // Sets state with our errors
+    if(!isValid) {
+      this.setState({ errors });
+    }
+
+    // Return true or false so we can check it onSubmit
+    return isValid;
+  }
+
+  // Submits the form to server
   onSubmit(e) {
-    this.setState({ errors: {}, isLoading: true }); // clear errors on submit
     e.preventDefault();
-    this.props.userSignupRequest(this.state).then(
-      () => {},
-      ({ data }) => this.setState({ errors: data, isLoading: false })
-    );
+
+    // Only if our form is valid do we make a server request
+    if(this.isValid()) {
+      // Clear errors on submit
+      this.setState({ errors: {}, isLoading: true });
+
+      // Dispatch redux-thunk action to post the form, then return errors, if any
+      this.props.userSignupRequest(this.state).then(
+        () => {},
+        ({ data }) => this.setState({ errors: data, isLoading: false })
+      );
+    }
+
   }
 
   render() {
