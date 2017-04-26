@@ -3,6 +3,7 @@ import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classnames from 'classnames';
 import validateInput from '../../../server/shared/validations/signup';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 
 class SignupForm extends React.Component {
@@ -76,77 +77,39 @@ class SignupForm extends React.Component {
       <form onSubmit={this.onSubmit}>
         <h1>Join our community!</h1>
 
-        <div
-          // Conditionally display .has-error class if errors.username is true
-          className={classnames(
-            "form-group",
-            { 'has-error': errors.username }
-          )}
-        >
-          <label className="control-label"> Username </label>
-          <input
-            value={this.state.username}
-            onChange={this.onChange}
-            type="text"
-            name="username"
-            className="form-control"
-          />
-          { errors.username && <span className="helpblock">{ errors.username }</span> }
-        </div>
+        <TextFieldGroup
+          field="username"
+          label="Username"
+          onChange={this.onChange}
+          value={this.state.username}
+          error={errors.username}
+        />
 
-        <div
-          // Conditionally display .has-error class if errors.email is true
-          className={classnames(
-            "form-group",
-            { 'has-error': errors.email }
-          )}
-        >
-          <label className="control-label"> Email </label>
-          <input
-            value={this.state.email}
-            onChange={this.onChange}
-            type="text"
-            name="email"
-            className="form-control"
-          />
-          { errors.email && <span className="helpblock">{ errors.email }</span> }
-        </div>
+        <TextFieldGroup
+          field="email"
+          label="Email"
+          onChange={this.onChange}
+          value={this.state.email}
+          error={errors.email}
+        />
 
-        <div
-          // Conditionally display .has-error class if errors.password is true
-          className={classnames(
-            "form-group",
-            { 'has-error': errors.password }
-          )}
-        >
-          <label className="control-label"> Password </label>
-          <input
-            value={this.state.password}
-            onChange={this.onChange}
-            type="password"
-            name="password"
-            className="form-control"
-          />
-          { errors.password && <span className="helpblock">{ errors.password }</span> }
-        </div>
+        <TextFieldGroup
+          field="password"
+          label="Password"
+          type="password"
+          onChange={this.onChange}
+          value={this.state.password}
+          error={errors.password}
+        />
 
-        <div
-          // Conditionally display .has-error class if errors.passwordConfirmation is true
-          className={classnames(
-            "form-group",
-            { 'has-error': errors.passwordConfirmation }
-          )}
-        >
-          <label className="control-label"> Confirm Password </label>
-          <input
-            value={this.state.passwordConfirmation}
-            onChange={this.onChange}
-            type="password"
-            name="passwordConfirmation"
-            className="form-control"
-          />
-          { errors.passwordConfirmation && <span className="helpblock">{ errors.passwordConfirmation }</span> }
-        </div>
+        <TextFieldGroup
+          field="passwordConfirmation"
+          label="Confirm Password"
+          type="password"
+          onChange={this.onChange}
+          value={this.state.passwordConfirmation}
+          error={errors.passwordConfirmation}
+        />
 
         <div
           // Conditionally display .has-error class if errors.timezone is true
