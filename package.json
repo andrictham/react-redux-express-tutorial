@@ -32,6 +32,6 @@
     "react-router": "2.8.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "validator": "^7.0.0"
+    "validator": "5.4.0"
   }
 }
