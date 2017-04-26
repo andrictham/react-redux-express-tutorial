@@ -10,7 +10,8 @@ class SignupForm extends React.Component {
       email: '',
       password: '',
       passwordConfirmation: '',
-      timezone: ''
+      timezone: '',
+      errors: {}
     }
 
     this.onChange = this.onChange.bind(this);
@@ -25,8 +26,12 @@ class SignupForm extends React.Component {
   }
 
   onSubmit(e) {
+    this.setState({ errors: {} }); // clear errors on submit
     e.preventDefault();
-    this.props.userSignupRequest(this.state);
+    this.props.userSignupRequest(this.state).then(
+      () => {},
+      ({ data }) => this.setState({ errors: data })
+    );
   }
 
   render() {
@@ -36,6 +41,9 @@ class SignupForm extends React.Component {
     const options = map(timezones, (val, key) =>
       <option key={val} value={val}>{key}</option>
     );
+
+    // Destructure errors from state
+    const { errors } = this.state;
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -50,6 +58,7 @@ class SignupForm extends React.Component {
             name="username"
             className="form-control"
           />
+          { errors.username && <span className="helpblock">{ errors.username }</span> }
         </div>
 
         <div className="form-group">
