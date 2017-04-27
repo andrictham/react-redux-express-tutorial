@@ -9,7 +9,10 @@ router.post('/', (req,res) => {
   const { errors, isValid } = validateInput(req.body);
 
   // return a server error if form input was not valid, along with any errors
-  if(!isValid) {
+  if(isValid) {
+    res.json({ success: true });
+  }
+  else {
     res.status(400).json(errors);
   }
 });
