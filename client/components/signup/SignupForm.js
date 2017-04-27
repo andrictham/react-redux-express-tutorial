@@ -56,9 +56,17 @@ class SignupForm extends React.Component {
 
       // Dispatch redux-thunk action to post the form, then return errors, if any
       this.props.userSignupRequest(this.state).then(
+        // on success
         () => {
+          // dispatch action addFlashMessage
+          this.props.addFlashMessage({
+            type: 'success',
+            text: 'You signed up successfully. Welcome!'
+          });
+          // redirect
           this.context.router.push('/');
         },
+        // or on failure
         ({ data }) => this.setState({ errors: data, isLoading: false })
       );
     }
@@ -148,7 +156,8 @@ class SignupForm extends React.Component {
 }
 
 SignupForm.propTypes = {
-  userSignupRequest: React.PropTypes.func.isRequired
+  userSignupRequest: React.PropTypes.func.isRequired,
+  addFlashMessage: React.PropTypes.func.isRequired
 }
 
 SignupForm.contextTypes = {
