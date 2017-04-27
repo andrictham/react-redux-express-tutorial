@@ -57,7 +57,7 @@ class SignupForm extends React.Component {
       // Dispatch redux-thunk action to post the form, then return errors, if any
       this.props.userSignupRequest(this.state).then(
         () => {
-          browserHistory.push('/');
+          this.context.router.push('/');
         },
         ({ data }) => this.setState({ errors: data, isLoading: false })
       );
@@ -149,6 +149,10 @@ class SignupForm extends React.Component {
 
 SignupForm.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired
+}
+
+SignupForm.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default SignupForm;
