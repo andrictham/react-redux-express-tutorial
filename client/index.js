@@ -4,12 +4,18 @@ import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './rootReducer'
 
 import routes from './routes';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
-  (state = {}) => state,
-  applyMiddleware(thunk)
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(thunk)
+  )
 );
 
 render(
