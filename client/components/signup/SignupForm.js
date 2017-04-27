@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import classnames from 'classnames';
 import validateInput from '../../../server/shared/validations/signup';
 import TextFieldGroup from '../common/TextFieldGroup';
+import { browserHistory } from 'react-router';
 
 
 class SignupForm extends React.Component {
@@ -55,7 +56,9 @@ class SignupForm extends React.Component {
 
       // Dispatch redux-thunk action to post the form, then return errors, if any
       this.props.userSignupRequest(this.state).then(
-        () => {},
+        () => {
+          browserHistory.push('/');
+        },
         ({ data }) => this.setState({ errors: data, isLoading: false })
       );
     }
