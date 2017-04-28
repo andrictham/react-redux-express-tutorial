@@ -116,6 +116,7 @@ class SignupForm extends React.Component {
           checkUserExists={this.checkUserExists}
           value={this.state.username}
           error={errors.username}
+          autoFocus
         />
 
         <TextFieldGroup
