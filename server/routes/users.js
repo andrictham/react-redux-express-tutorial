@@ -36,6 +36,17 @@ function validateInput(data, otherValidations) {
   })
 }
 
+router.get('/:identifier', (req, res) => {
+  User.query({
+    select: ['username', 'email'],
+    where: { email: req.params.identifier },
+    orWhere: { username: req.params.identifier }
+  }).fetch().then(user => {
+    // If there isn’t user, return null. If not, return the user
+    res.json({ user });
+  })
+});
+
 router.post('/', (req,res) => {
 
   // Run higher order function to validate input (ansychronously, because we need to query the database), then return us any errors and whether the form input was valid
