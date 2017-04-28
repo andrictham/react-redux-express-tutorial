@@ -2,6 +2,7 @@ import React from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classnames from 'classnames';
+
 import validateInput from '../../../server/shared/validations/signup';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { browserHistory } from 'react-router';
@@ -161,7 +162,7 @@ class SignupForm extends React.Component {
             <option value="" disabled>Choose your timezone</option>
             { options }
           </select>
-          { errors.timezone && <span className="helpblock">{ errors.timezone }</span> }
+          { errors.timezone && <span className="help-block">{ errors.timezone }</span> }
         </div>
 
         <div className="form-group">
