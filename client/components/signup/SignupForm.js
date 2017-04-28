@@ -38,6 +38,7 @@ class SignupForm extends React.Component {
     if (val !== '') /* Check if field is not empty */ {
       this.props.doesUserExist(val).then(res => {
         let errors = this.state.errors;
+        let invalid;
         if (res.data.user) {
           errors[field] = 'This ' + field + ' is taken. Please try another one.';
           this.state.invalid = true;
