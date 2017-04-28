@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const TextFieldGroup = ({ field, value, label, error, type, onChange, checkUserExists }) => (
+const TextFieldGroup = ({ field, value, label, error, type, autoFocus, onChange, checkUserExists }) => (
   <div
     // Conditionally display .has-error class if errors.username is true
     className={classnames(
@@ -17,6 +17,7 @@ const TextFieldGroup = ({ field, value, label, error, type, onChange, checkUserE
       type={type}
       name={field}
       className="form-control"
+      autoFocus={autoFocus}
     />
     { error && <span className="help-block">{ error }</span> }
   </div>
