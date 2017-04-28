@@ -4,9 +4,10 @@ Following [this tutorial](https://www.youtube.com/watch?v=yoJuOs-niIc) by [Remch
 **Original repo**: https://github.com/Remchi/reddice
 
 ## Run the project locally
-Make sure you have `yarn` and `node 6.9.5` installed.
+Make sure you have `postgresql`, `yarn`, and `node 6.9.5` installed.
 
 ```
+createdb reddice
 yarn
 yarn run server
 ```
